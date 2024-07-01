@@ -18,7 +18,9 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   dropdown_search: ^2.0.1
   signature: ^5.0.0
-  flutter_touch_spin: ^2.0.0-nullsafety.1
+  flutter_touch_spin: 
+    git:
+     url: https://github.com/akhilSignzy/flutter_touch_spin.git
   intl: ^0.19.0
   flutter_typeahead: ^3.2.4
   flutter_datetime_picker_bdaya: ^2.0.0
