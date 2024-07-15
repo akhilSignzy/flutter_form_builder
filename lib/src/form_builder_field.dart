@@ -184,6 +184,23 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
   }
 
+    void _informFormForFieldChangeValue({required bool isSetState}) {
+    if (_formBuilderState != null) {
+      if (enabled || !_formBuilderState!.widget.skipDisabled) {
+        _formBuilderState!.setInternalFieldChangeValue<T>(
+          widget.name,
+          value,
+          isSetState: isSetState,
+        );
+      } else {
+        _formBuilderState!.removeInternalFieldChangeValue(
+          widget.name,
+          isSetState: isSetState,
+        );
+      }
+    }
+  }
+
   void _touchedHandler() {
     if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
@@ -203,6 +220,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     super.didChange(value);
     _informFormForFieldChange();
     widget.onChanged?.call(value);
+  }
+
+  @override
+    void didChangeValue(T? value) {
+    super.didChange(value);
+    _informFormForFieldChangeValue(
+      isSetState: false,
+    );
   }
 
   @override
