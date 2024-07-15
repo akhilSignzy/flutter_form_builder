@@ -204,8 +204,6 @@ class FormBuilderState extends State<FormBuilder> {
     widget.onChanged?.call();
   }
 
-  bool get isValid =>
-      fields.values.where((element) => !element.isValid).isEmpty;
 
   void removeInternalFieldChangeValue(
     String name, {
