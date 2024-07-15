@@ -195,6 +195,28 @@ class FormBuilderState extends State<FormBuilder> {
     _instantValue.remove(name);
   }
 
+  void setInternalFieldChangeValue<T>(String name, T? value,
+      {required bool isSetState}) {
+    _instantValue[name] = value;
+    if (isSetState) {
+      setState(() {});
+    }
+    widget.onChanged?.call();
+  }
+
+  bool get isValid =>
+      fields.values.where((element) => !element.isValid).isEmpty;
+
+  void removeInternalFieldChangeValue(
+    String name, {
+    required bool isSetState,
+  }) {
+    _instantValue.remove(name);
+    if (isSetState) {
+      setState(() {});
+    }
+  }
+
   void registerField(String name, FormBuilderFieldState field) {
     // Each field must have a unique name.  Ideally we could simply:
     //   assert(!_fields.containsKey(name));
