@@ -129,6 +129,12 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
                 dense: true,
                 isThreeLine: false,
                 title: title,
+                fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                     if (states.contains(MaterialState.selected)) {
+                            return  activeColor; 
+                        }
+                          return Color(0xFFFFFFFF);}
+                ),
                 subtitle: subtitle,
                 value: tristate ? state.value : (state.value ?? false),
                 onChanged: state.enabled
